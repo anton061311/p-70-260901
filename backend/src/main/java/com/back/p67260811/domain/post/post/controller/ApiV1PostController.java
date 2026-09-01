@@ -63,13 +63,17 @@ public class ApiV1PostController {
     @Transactional
     public RsData<PostDto> write(
             @Valid @RequestBody PostWriteReqBody reqBody,
-            @RequestParam String username,
-            @RequestParam String password
+//            @RequestParam String username,
+//            @RequestParam String password
+            @RequestParam String apiKey
     ) {
 
-        Member actor = memberService.findByUsername(username).get();
+//        Member actor = memberService.findByUsername(username).get();
+        Member actor = memberService.findByApiKey(apiKey).orElseThrow(
+                () -> new ServiceException("401-1", "해당 API Key를 가진 회원이 존재하지 않습니다.")
+        );
 
-        if(!actor.getPassword().equals(password)) {
+        if(!actor.getPassword().equals(apiKey)) {
             throw new ServiceException("401-1", "비밀번호가 일치하지 않습니다.");
         }
 

@@ -45,8 +45,9 @@ MisMatchHandlerException구현했다. 그럼에도 예외 케이스는 매우 �
 apiKey는 어떤 유의미한 값이 있어서는 안 되고 무작위 해야 한다.
 
 # 12강,  회원에게 apiKey 추가, username과 apiKey에 유니크 설정 추가
+@Column(unique = true)
 
-# 13강
+# 13강, 이제 글 작성시 username/password가 아니라 apiKey로 인증
 
 # 14강
 
