@@ -1,4 +1,4 @@
-package com.back.p67260811.global.excpetion;
+package com.back.p67260811.global.exception;
 
 import com.back.p67260811.global.dto.RsData;
 
