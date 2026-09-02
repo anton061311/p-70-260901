@@ -133,7 +133,8 @@ member에 생성자 추가
 
 
 # 22강, 글 삭제 인증과 권한 처리
-* commit message -
+feat(post): add authentication and authorization for post deletion
+* 구체적으로는 Authorization: Bearer ... 헤더에서 API Key를 추출하고, 유효하지 않은 키는 401, 작성자가 아닌 사용자의 삭제 요청은 403으로 차단했습니다. 기존 글 작성/수정 요청의 Authorization 헤더에도 @NotBlank 검증을 추가했고, 관련 테스트에도 인증 헤더를 추가했습니다.
 
 # 23강, 글 등록 테스트케이스에도 인증과 권한 내용 추가
 
