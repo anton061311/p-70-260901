@@ -68,12 +68,8 @@ public class ApiV1PostController {
 
         String authorization = apiKey.substring(7);
         Member actor = memberService.findByApiKey(authorization).orElseThrow(
-                () -> new ServiceException("401-1", "해당 API Key를 가진 회원이 존재하지 않습니다.")
+                () -> new ServiceException("401-1","API Key가 유효하지 않습니다.")
         );
-
-        if(!actor.getPassword().equals(apiKey)) {
-            throw new ServiceException("401-1", "비밀번호가 일치하지 않습니다.");
-        }
 
         Post post = postService.write(actor, reqBody.title, reqBody.content);
         return new RsData<>(
@@ -98,9 +94,21 @@ public class ApiV1PostController {
     @Transactional
     public RsData<Void> modify(
             @PathVariable int id,
-            @Valid @RequestBody PostModifyReqBody reqBody
+            @Valid @RequestBody PostModifyReqBody reqBody,
+            @RequestHeader("Authorization") String apiKey
     ) {
+
+        String authorization = apiKey.substring(7);
+        Member actor = memberService.findByApiKey(authorization).orElseThrow(
+                () -> new ServiceException("401-1","API Key가 유효하지 않습니다.")
+        );
+
         Post post = postService.findById(id).get();
+
+        if(!actor.equals(post.getAuthor())) {
+            throw new ServiceException("403-1", "수정 권한이 없습니다.");
+        }
+
         postService.modify(post, reqBody.title, reqBody.content);
 
         return new RsData<>(
