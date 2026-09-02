@@ -108,7 +108,7 @@ apiKey는 어떤 유의미한 값이 있어서는 안 되고 무작위 해야 �
 
 # 19강, 1부, apiKey를 header에 Authorization으로 보내기
 # 19강, 2부, Authorization 헤더를 백엔드에서 처리
-* commit message -
+* commit message - refactor(member): handle API key from Authroization header
  현재 인증데이터(apiKey)가 url 파라미터로 넘어가고 있음.
  갑자기 body로 apikey를 넘김. (Postman에서)
  request param이아니라 postwritereqbody에서 string apikey로 바꾸는데? 
@@ -121,10 +121,16 @@ apiKey는 어떤 유의미한 값이 있어서는 안 되고 무작위 해야 �
  Postman의 header탭에 들어가서 apikey를 넣음![img_1.png](img_1.png)
 
 # 20강, 포스트맨에서 최상위 부모에게 auth type을 설정하면 자식들이 설정을 물려 받음. 이제 Authorization 헤더를 직접 넣지 않아도 된다.
-* commit message -
+* 포스트맨만 사용
+이제 포스트맨에서 처리해야 하는 부분은 끝났습니다.
 
 # 21강, 글 수정시에도 인증정보를 전달, 글 수정시 권한체크(인가)까지 진행
-* commit message -
+* test(member): set sample API keys to match usernames
+인증 -> 누구인지 증명
+인가 -> 누군지는 알겠고 권한이 있나 체크
+ 
+member에 생성자 추가
+
 
 # 22강, 글 삭제 인증과 권한 처리
 * commit message -

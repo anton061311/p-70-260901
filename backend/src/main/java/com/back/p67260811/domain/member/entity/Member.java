@@ -27,4 +27,8 @@ public class Member extends BaseEntity {
         this.apiKey = UUID.randomUUID().toString();
     }
 
+    public Member(String username, String password, String nickname, String apiKey) {
+        this(username, password, nickname);
+        this.apiKey = apiKey;
+    }
 }
