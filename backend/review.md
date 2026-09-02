@@ -58,22 +58,34 @@ apiKey는 어떤 유의미한 값이 있어서는 안 되고 무작위 해야 �
 
 ## 2026.09.02 (14-?)
 # 15강, 회원 가입시 중복된 아이디 처리, 테스트 케이스 먼저 만들고 구현
+* commit message - test: check for already exist username
+* commit message - feat(member): implement ApiV1MemberController 
 
 # 16강, username 중복 처리 로직을 memberService로 옮겨서 재사용성을 높임
+* commit message - 
+
 
 # 17강, 로그인 기능 구현
+* commit message -
+인증이라는 건 어떤 수단을 가지고 이 api를 사용하는 살마에게 인증을 요구하는 것이다. 너임을 증명해라. 
+그리고 그림을 그려줌.
 
 # 18강 1부, 콜렉션에 baseURL 변수 지정하고 각 요청에 활용
 # 18강 2부, POSTMAN에서 콜렉션 변수 apiKey 만들어서 사용
+* commit message -
 
 # 19강, 1부, apiKey를 header에 Authorization으로 보내기
 # 19강, 2부, Authorization 헤더를 백엔드에서 처리
+* commit message -
 
 # 20강, 포스트맨에서 최상위 부모에게 auth type을 설정하면 자식들이 설정을 물려 받음. 이제 Authorization 헤더를 직접 넣지 않아도 된다.
+* commit message -
 
 # 21강, 글 수정시에도 인증정보를 전달, 글 수정시 권한체크(인가)까지 진행
+* commit message -
 
 # 22강, 글 삭제 인증과 권한 처리
+* commit message -
 
 # 23강, 글 등록 테스트케이스에도 인증과 권한 내용 추가
 
