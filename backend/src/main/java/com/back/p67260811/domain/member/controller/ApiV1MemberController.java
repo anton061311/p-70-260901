@@ -4,6 +4,7 @@ import com.back.p67260811.domain.member.entity.Member;
 import com.back.p67260811.domain.member.service.MemberService;
 import com.back.p67260811.global.dto.MemberDto;
 import com.back.p67260811.global.dto.RsData;
+import com.back.p67260811.global.exception.ServiceException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -46,6 +47,10 @@ public class ApiV1MemberController {
     ) {
 
         Member member = memberService.join(reqBody.username, reqBody.password, reqBody.nickname);
+
+        memberService.findByUsername(reqBody.username).ifPresent(m -> {
+            throw new ServiceException("409-1", "이미 사용중인 아이디입니다.");
+        });
 
         return new RsData(
                 "201-1",
