@@ -116,12 +116,12 @@ public class ApiV1MemberControllerTest {
                 .andExpect(handler().methodName("login"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.resultCode").value("200-1"))
-                .andExpect(jsonPath("$.msg").value("%s님 환영합니다.".formatted(username)))
-                .andExpect(jsonPath("$.data.apiKey").exists());
-//                .andExpect(jsonPath("$.data.memberDto.id").value(member.getId()))
-//                .andExpect(jsonPath("$.data.memberDto.createDate").value(member.getCreateDate()))
-//                .andExpect(jsonPath("$.data.memberDto.modifyDate").value(member.getModifyDate()))
-//                .andExpect(jsonPath("$.data.memberDto.name").value(member.getName()));
+                .andExpect(jsonPath("$.msg").value("%s님 환영합니다.".formatted(member.getNickname())))
+                .andExpect(jsonPath("$.data.apiKey").exists())
+                .andExpect(jsonPath("$.data.memberDto.id").value(member.getId()))
+                .andExpect(jsonPath("$.data.memberDto.createDate").exists())
+                .andExpect(jsonPath("$.data.memberDto.modifyDate").exists())
+                .andExpect(jsonPath("$.data.memberDto.name").value(member.getNickname()));
 
     }
 }
