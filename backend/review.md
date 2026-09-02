@@ -95,15 +95,30 @@ apiKey는 어떤 유의미한 값이 있어서는 안 되고 무작위 해야 �
 
 구현은 같이 해보는 것이 좋을 것 같아서 해봄
 
-
+여기를 거의 1시간을 설명했음
 
 # 18강 1부, 콜렉션에 baseURL 변수 지정하고 각 요청에 활용
 # 18강 2부, POSTMAN에서 콜렉션 변수 apiKey 만들어서 사용
 * commit message -
 
+*  잠깐 이전 설명 복습
+로그인을 하고 나면 apikey만 가지고 클라이언트와 서버가 소통할 수 있다
+그리고 서버에만 저장하는 순간 무상태성을 위반하는데 프론트에 저장하면 위험하긴 하다.
+그래서 아이디 비번 보다는 apikey를 프론트에 저장한다. -> 뭔소리일까?
+
 # 19강, 1부, apiKey를 header에 Authorization으로 보내기
 # 19강, 2부, Authorization 헤더를 백엔드에서 처리
 * commit message -
+ 현재 인증데이터(apiKey)가 url 파라미터로 넘어가고 있음.
+ 갑자기 body로 apikey를 넘김. (Postman에서)
+ request param이아니라 postwritereqbody에서 string apikey로 바꾸는데? 
+ 아 바디에 포함시키는 거구나
+ url에 포함: 위험
+ body에 포함: 근데 BODY에 포함시키면 안 좋은 점도 있따. GET 요청은 requestBody가 없다. 그래서 하나의 방법이긴 하지만 제약이
+있기 때문에 보통 body에 포함하진 않는다.
+ header에 포함: 모든 요청에 헤더는 필수 존재.
+ 따라서 인증데이터는 header에 넣는 것이 좋다.
+ Postman의 header탭에 들어가서 apikey를 넣음![img_1.png](img_1.png)
 
 # 20강, 포스트맨에서 최상위 부모에게 auth type을 설정하면 자식들이 설정을 물려 받음. 이제 Authorization 헤더를 직접 넣지 않아도 된다.
 * commit message -

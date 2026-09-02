@@ -63,13 +63,11 @@ public class ApiV1PostController {
     @Transactional
     public RsData<PostDto> write(
             @Valid @RequestBody PostWriteReqBody reqBody,
-//            @RequestParam String username,
-//            @RequestParam String password
-            @RequestParam String apiKey
+            @RequestHeader("Authorization") String apiKey
     ) {
 
-//        Member actor = memberService.findByUsername(username).get();
-        Member actor = memberService.findByApiKey(apiKey).orElseThrow(
+        String authorization = apiKey.substring(7);
+        Member actor = memberService.findByApiKey(authorization).orElseThrow(
                 () -> new ServiceException("401-1", "해당 API Key를 가진 회원이 존재하지 않습니다.")
         );
 
