@@ -5,6 +5,7 @@ import com.back.p67260811.domain.member.service.MemberService;
 import com.back.p67260811.global.dto.MemberDto;
 import com.back.p67260811.global.dto.RsData;
 import com.back.p67260811.global.exception.ServiceException;
+import com.back.p67260811.global.rq.Rq;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class ApiV1MemberController {
 
     private final MemberService memberService;
+    private final Rq rq;
 
     record JoinReqBody(
             @NotBlank
@@ -94,4 +96,17 @@ public class ApiV1MemberController {
                 )
         );
     }
+
+    @GetMapping("/me")
+    public RsData<MemberDto> me() {
+
+        Member actor = rq.getActor();
+
+        return new RsData(
+                "200-1",
+                "OK",
+                new MemberDto(actor)
+        );
+    }
+
 }
