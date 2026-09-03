@@ -275,6 +275,11 @@ XSS 보안	HttpOnly 플래그를 설정하면 클라이언트에서 접근 불�
 ## 42강, 로그인 시 apiKey 쿠키 생성
 
 ## 43강, 응답 쿠키 생성 로직을 Rq로 이동
+* refactor(auth): move cookie response handling to Rq
+로그인 컨트롤러에서 직접 HttpServletResponse를 받아 쿠키를 추가하던 로직을 Rq로 이동함.
+Rq가 HttpServletRequest뿐 아니라 HttpServletResponse도 가지게 되면서, 요청/응답과 관련된 공통 처리를 Rq에 모으는 구조가 됨.
+컨트롤러는 HTTP 세부 구현을 직접 다루지 않고, 로그인이라는 비즈니스 흐름에 더 집중하게 됨.
+핵심 개념은 관심사 분리(Separation of Concerns)와 중복 HTTP 처리 로직의 캡슐화.
 
 ## 44강, Cookie 세부 설정 적용 및 테스트
 # path=/, httpOnly=true, domain=localhost
