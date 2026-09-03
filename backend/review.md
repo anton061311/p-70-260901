@@ -282,7 +282,12 @@ Rq가 HttpServletRequest뿐 아니라 HttpServletResponse도 가지게 되면서
 핵심 개념은 관심사 분리(Separation of Concerns)와 중복 HTTP 처리 로직의 캡슐화.
 
 ## 44강, Cookie 세부 설정 적용 및 테스트
-# path=/, httpOnly=true, domain=localhost
+이번 커밋은 로그인 시 생성하는 apiKey 쿠키에 세부 속성을 지정하고, 그 설정까지 테스트하도록 강화한 작업입니다.
+ path=/, httpOnly=true, domain=localhost
+Path=/ → 애플리케이션의 모든 경로 요청에 쿠키가 전송됩니다.
+Domain=localhost → 해당 도메인에서만 쿠키를 사용합니다.
+HttpOnly=true → JavaScript의 document.cookie로 접근할 수 없게 하여 XSS로 인한 인증정보 탈취 위험을 줄입니다.
+테스트에서도 단순히 쿠키 존재 여부만 보는 것이 아니라 path, domain, httpOnly 값까지 검증하도록 변경했습니다.
 
 ## 45강, 인증 시 Authorization 헤더와 Cookie 헤더 모두에서 인증 정보 조회
 
