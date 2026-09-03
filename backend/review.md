@@ -294,8 +294,10 @@ HttpOnly=true → JavaScript의 document.cookie로 접근할 수 없게 하여 X
 ## 46강, 개발 편의를 위해 샘플 회원 5명의 apiKey를 username과 동일하게 설정
 
 ## 47강, 로그아웃 구현 및 HttpOnly 쿠키 삭제 처리
+로그아웃 API를 구현하고, 로그인 때 생성한 HttpOnly apiKey 쿠키를 서버에서 만료시키는 작업입니다.
 
 ## 48강, OpenAPI 문서에 @SecurityScheme를 추가해 헤더 기반 인증 기능 적용
+이번 커밋은 Swagger/OpenAPI 문서에서 Bearer 인증을 사용할 수 있도록 보안 스키마를 등록한 작업입니다.
 
 ==============================================================================
 # 2부 : HttpOnly Cookie 종료
