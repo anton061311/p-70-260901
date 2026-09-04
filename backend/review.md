@@ -319,12 +319,13 @@ HttpOnly=true → JavaScript의 document.cookie로 접근할 수 없게 하여 X
 * 커밋 없음
 
 ## 52강, JWT 토큰 생성 테스트 케이스 작성
-* test(auth): add JWT token generation test
+** test(auth): add JWT token generation test**
 
 ## 53강, Ut.jwt.toString 함수를 이용해 JWT 생성
-* feat(auth): add JWT generation utility
+** feat(auth): add JWT generation utility**
 
 ## 54강, AuthTokenService.genAccessToken 함수 구현
+**feat(auth): implement access token generation**
 apiKey 사용할 때 
 -> apiKey로 인증 성공한다고 하더라도 이 사람이 누군지 모름
 -> apiKey = 회원정보 칼럼을 만들ㅇ러서 이런 식으로 매핑을 해놨기 떄문에 db조회를 할 수밖에 없다.
@@ -333,10 +334,16 @@ JWT를 사용할 때
 -> 회원 정보가 jwt에 내포될 수 있으므로 db 조회가 필요 없다.
 
 ## 55강, JWT 유효성 체크 및 payload 추출
+jwt의 유효성
+- 변조되지 않음 => Signature 예외
+- 올바른 json형식 => Malformed 예외
+- 유효기간 => expire 예외
 
 ## 56강, Ut.jwt.isValid 함수로 JWT 유효성 검증 구현
+넘어가겠
 
-## 57강, Ut.jwt.payload 함수 구현
+## 57강, Ut.jwt.payload 함수 구현 
+넘어가겠
 
 ## 58강, AuthTokenService에 payload 함수 도입
 
