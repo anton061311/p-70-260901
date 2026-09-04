@@ -319,8 +319,10 @@ HttpOnly=true → JavaScript의 document.cookie로 접근할 수 없게 하여 X
 * 커밋 없음
 
 ## 52강, JWT 토큰 생성 테스트 케이스 작성
+* test(auth): add JWT token generation test
 
 ## 53강, Ut.jwt.toString 함수를 이용해 JWT 생성
+* feat(auth): add JWT generation utility
 
 ## 54강, AuthTokenService.genAccessToken 함수 구현
 
