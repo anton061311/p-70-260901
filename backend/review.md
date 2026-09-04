@@ -310,7 +310,96 @@ HttpOnly=true → JavaScript의 document.cookie로 접근할 수 없게 하여 X
 ==============================================================================
 # 3부 : JWT 시작
 ==============================================================================
-
 # 49강, apiKey 방식은 그것이 유효한지 확인하기 위해서는 꼭 DB 조회가 필요하다 이게 나쁘지는 않지만 더 좋은 방식이 있다
+
+# 50강, apiKey 방식은 그것이 유효한지 확인하기 위해서는 꼭 DB 조회가 필요하다 이게 나쁘지는 않지만 더 좋은 방식이 있다
 * 이번 커밋은 JWT 기반 인증 토큰 처리를 시작하기 위한 초기 구조를 만든 작업입니다. 아직 JWT 생성/검증 로직 자체는 구현되지 않았습니다.
-* 
+
+## 51강, JWT는 signature를 이용해 위조 방지 가능
+* 커밋 없음
+
+## 52강, JWT 토큰 생성 테스트 케이스 작성
+
+## 53강, Ut.jwt.toString 함수를 이용해 JWT 생성
+
+## 54강, AuthTokenService.genAccessToken 함수 구현
+
+## 55강, JWT 유효성 체크 및 payload 추출
+
+## 56강, Ut.jwt.isValid 함수로 JWT 유효성 검증 구현
+
+## 57강, Ut.jwt.payload 함수 구현
+
+## 58강, AuthTokenService에 payload 함수 도입
+
+## 59강, JWT secretPattern과 expireSeconds를 application.yml에서 관리
+
+## 60강, 로그인 후 Access Token 발급 구현
+
+## 61강, Rq.getActor에서 Access Token을 우선 사용하도록 인증 로직 수정
+
+## 62강, JWT 인증 구조와 동작 원리 정리
+
+## 63강, Access Token 탈취 위험과 짧은 만료시간이 필요한 이유
+
+## 64강, Refresh Token이 필요한 이유
+
+## 65강, Access Token과 Refresh Token 비교
+
+## 66강, apiKey가 유효하지 않아도 Access Token이 유효하면 인증 성공하도록 구현
+
+## 67강, Access Token 인증에서 DB 조회가 발생하는 문제 확인
+
+## 68강, JPA 조회 없이 Access Token으로 Member 객체를 생성해 빠른 인증 구현
+
+## 69강, Access Token claims에 nickname 추가
+
+## 70강, JWT claims 크기와 정보 표현·쿼리 최적화의 관계
+
+## 71강, 내 정보 API처럼 실제 회원 정보가 필요한 경우 DB 조회
+
+## 72강, 유효하지 않은 Access Token을 재발급해야 하는 이유
+
+## 73강, Access Token이 유효하지 않으면 apiKey를 이용해 재발급
+
+## 74강, 만료된 Access Token의 실제 재발급 동작 확인
+
+## 75강, Access Token 자동 재발급 방식과 Refresh Token 만료 정책 정리
+
+## 76강, 관리자용 회원 다건 조회 API 구현
+
+## 77강, 회원 다건 조회 API에 관리자 권한 접근 제한 적용
+
+## 78강, 글 통계 기능 API 구현
+
+## 79강, Spring Security 도입 및 기본 동작 이해
+
+## 80강, SecurityConfig 설정으로 요청 허용, H2 Console 허용 및 CSRF 비활성화
+
+## 81강, 비밀번호 암호화 적용
+
+## 82강, UsernamePasswordAuthenticationFilter 앞에 CustomAuthenticationFilter 도입
+
+## 83강, Access Token과 apiKey 중 하나라도 있으면 인증 수행
+
+## 84강, 커스텀 인증 결과를 SecurityContext에 등록
+
+## 85강, 순환 참조로 인한 Spring Bean 생성 오류 해결
+
+## 86강, Filter에서 발생한 예외를 직접 처리하도록 구현
+
+## 87강, Filter 예외와 인증 없이 접근 가능한 요청 처리
+
+## 88강, 인증된 요청만 통과하도록 Spring Security 설정 수정
+
+## 89강, 로그인·글 목록 등 인증 없이 접근 가능한 URL 등록
+
+## 90강, Spring Security 인증·인가 실패 응답 형식 커스터마이징
+
+## 91강, Spring Security 인가 적용 후 통계 기능의 관리자 권한 체크 로직 제거
+
+## 92강, 관리자 URL 패턴에 공통 인가 설정 적용
+
+## 93강, UserDetails 인증 객체를 프로젝트 방식에 맞게 확장
+
+## 94강, Cookie 보안 설정 및 CORS 설정
