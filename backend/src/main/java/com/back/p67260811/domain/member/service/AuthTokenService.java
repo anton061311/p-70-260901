@@ -12,7 +12,7 @@ public class AuthTokenService {
     private String secretPattern= "abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890";
     private long expireMills = 1000L * 60 * 10;
 
-    public String genAccessToken(Member member) {
+    String genAccessToken(Member member) {
 
         return Ut.jwt.toString(
                 secretPattern,
@@ -21,7 +21,7 @@ public class AuthTokenService {
         );
     }
 
-    public Map<String, Object> payloadOrNull(String jwt) {
+    Map<String, Object> payloadOrNull(String jwt) {
         Map<String, Object> payload = Ut.jwt.payloadOrNull(jwt, secretPattern);
 
         if (payload == null) {

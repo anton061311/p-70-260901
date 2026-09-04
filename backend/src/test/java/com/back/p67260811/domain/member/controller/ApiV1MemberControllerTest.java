@@ -1,6 +1,5 @@
 package com.back.p67260811.domain.member.controller;
 
-
 import com.back.p67260811.domain.member.entity.Member;
 import com.back.p67260811.domain.member.repository.MemberRepository;
 import jakarta.servlet.http.Cookie;
@@ -9,34 +8,40 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Transactional
 public class ApiV1MemberControllerTest {
+
     @Autowired
     private MockMvc mvc;
+
     @Autowired
     private MemberRepository memberRepository;
+
     @Test
     @DisplayName("회원 가입")
     void t1() throws Exception {
+
         String username = "newUser";
         String password = "1234";
         String nickname = "새유저";
+
         ResultActions resultActions = mvc
                 .perform(
-                        post("/api/v1/members")
+                        post("/api/v1/members/join")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                         {
@@ -48,6 +53,7 @@ public class ApiV1MemberControllerTest {
                                 )
                 )
                 .andDo(print());
+
         resultActions
                 .andExpect(handler().handlerType(ApiV1MemberController.class))
                 .andExpect(handler().methodName("join"))
@@ -70,7 +76,7 @@ public class ApiV1MemberControllerTest {
 
         ResultActions resultActions = mvc
                 .perform(
-                        post("/api/v1/members")
+                        post("/api/v1/members/join")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                         {
@@ -119,8 +125,9 @@ public class ApiV1MemberControllerTest {
                 .andExpect(handler().methodName("login"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.resultCode").value("200-1"))
-                .andExpect(jsonPath("$.msg").value("%s님 환영합니다.".formatted(member.getNickname())))
+                .andExpect(jsonPath("$.msg").value("%s님 반갑습니다!".formatted(member.getNickname())))
                 .andExpect(jsonPath("$.data.apiKey").exists())
+                .andExpect(jsonPath("$.data.accessToken").isNotEmpty())
                 .andExpect(jsonPath("$.data.memberDto.id").value(member.getId()))
                 .andExpect(jsonPath("$.data.memberDto.createDate").exists())
                 .andExpect(jsonPath("$.data.memberDto.modifyDate").exists())
@@ -139,11 +146,17 @@ public class ApiV1MemberControllerTest {
                     if(apiKeyCookie != null) {
                         assertThat(apiKeyCookie.getValue()).isNotBlank();
                     }
+
+                    Cookie accessTokenCookie = result.getResponse().getCookie("accessToken");
+                    assertThat(accessTokenCookie).isNotNull();
+
+                    assertThat(accessTokenCookie.getPath()).isEqualTo("/");
+                    assertThat(accessTokenCookie.getDomain()).isEqualTo("localhost");
+                    assertThat(accessTokenCookie.isHttpOnly()).isEqualTo(true);
                 }
         );
 
     }
-
 
     @Test
     @DisplayName("로그아웃")
