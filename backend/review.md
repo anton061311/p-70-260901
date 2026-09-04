@@ -334,6 +334,7 @@ JWT를 사용할 때
 -> 회원 정보가 jwt에 내포될 수 있으므로 db 조회가 필요 없다.
 
 ## 55강, JWT 유효성 체크 및 payload 추출
+**feat(auth): add access toekn issuance test on login & ossue acess token on longin**
 jwt의 유효성
 - 변조되지 않음 => Signature 예외
 - 올바른 json형식 => Malformed 예외
