@@ -43,33 +43,21 @@ public class AuthTokenServiceTest {
     @DisplayName("jjwt 최신 방식으로 JWT 생성, {name=\"Paul\", age=23}")
     void t2() {
 
-        byte[] keyBytes = "abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890".getBytes(StandardCharsets.UTF_8);
-        SecretKey secretKey = Keys.hmacShaKeyFor(keyBytes);
-
-        // 발행 시간과 만료 시간 설정
-        Date issuedAt = new Date();
-        Date expiration = new Date(issuedAt.getTime() + expireMills);
-
         Map<String, Object> payload = Map.of("name", "Paul", "age", 23);
+
         // JSON ==> Map
-        String jwt = Jwts.builder()
-                .claims(payload) // 내용
-                .issuedAt(issuedAt) // 생성날짜
-                .expiration(expiration) // 만료날짜
-                .signWith(secretKey) // 키 서명
-                .compact();
+        String jwt = Ut.jwt.toString(
+                secretPattern,
+                expireMills,
+                payload
+        );
 
         assertThat(jwt).isNotBlank();
 
-        Map<String, Object> parsedPayload = (Map<String, Object>) Jwts
-                .parser()
-                .verifyWith(secretKey)
-                .build()
-                .parse(jwt)
-                .getPayload();
+        Map<String, Object> parsedPayload = Ut.jwt.payload(jwt, secretPattern);
 
         assertThat(parsedPayload)
-                .containsAllEntriesOf(parsedPayload);
+                .containsAllEntriesOf(payload);
 
         System.out.println("jwt = " + jwt);
     }
@@ -77,16 +65,24 @@ public class AuthTokenServiceTest {
     @Test
     @DisplayName("Ut.jwt.toString 를 통해서 JWT 생성, {name=\"Paul\", age=23}")
     void t3() {
+
+        Map<String, Object> payload = Map.of("name", "Paul", "age", 23);
+
         String jwt = Ut.jwt.toString(
                 secretPattern,
                 expireMills,
-                Map.of("name", "Paul", "age", 23)
+                payload
         );
 
         assertThat(jwt).isNotBlank();
 
         boolean validResult = Ut.jwt.isValid(jwt, secretPattern);
         assertThat(validResult).isTrue();
+
+        Map<String, Object> parsedPayload = Ut.jwt.payload(jwt, secretPattern);
+
+        assertThat(parsedPayload)
+                .containsAllEntriesOf(payload);
 
         System.out.println("jwt = " + jwt);
     }
