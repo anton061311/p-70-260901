@@ -341,14 +341,16 @@ jwt의 유효성
 - 유효기간 => expire 예외
 
 ## 56강, Ut.jwt.isValid 함수로 JWT 유효성 검증 구현
-넘어가겠
+**feat(auth): dd JWT validation utility**
 
 ## 57강, Ut.jwt.payload 함수 구현 
-넘어가겠
+**feat(auth): add JWT payload extraction utility**
 
 ## 58강, AuthTokenService에 payload 함수 도입
+**feat(auth): add access toekn issuance test on login & ossue acess token on longin**
 
 ## 59강, JWT secretPattern과 expireSeconds를 application.yml에서 관리
+민감한 정보, 설정정보, 프로젝트 정책 정보 등은 따로 모아서
 
 ## 60강, 로그인 후 Access Token 발급 구현
 
